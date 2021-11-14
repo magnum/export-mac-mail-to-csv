@@ -21,9 +21,12 @@ def more_payloads(message):
 			body = message.get_payload(decode=True)
 	return body
 
-with open("mbox.csv", "wb") as outfile:
+with open("mbox.csv", "w") as outfile:
 	writer = csv.writer(outfile)
 
 	for message in mailbox.mbox('mbox'): ## 'mbox' needs to match the file you're reading from
-		body = more_payloads(message)
-		writer.writerow([ message['date'], message['from'], message['subject'],  body])
+		#body = more_payloads(message)
+		#writer.writerow([ message['date'], message['from'], message['subject'],  body])
+		to = message['to']
+		print(to)
+		writer.writerow([to])
